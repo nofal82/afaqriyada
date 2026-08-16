@@ -14,13 +14,22 @@ import { cn } from "@/lib/utils";
 
 interface LanguageSwitcherProps {
   current: Locale;
+  /** Accessible name for the control, e.g. "Language". */
   label: string;
+  /** Accessible name for the compact variant, e.g. "Switch to Arabic". */
+  switchLabel?: string;
+  /**
+   * `pair` lists every locale (EN | العربية) — used where there is room.
+   * `toggle` is a single tap target showing the language you would switch to,
+   * for the mobile header bar where the pair does not fit beside the wordmark.
+   */
+  variant?: "pair" | "toggle";
   tone?: "dark" | "light";
   className?: string;
 }
 
 /**
- * EN | العربية.
+ * Language switcher.
  *
  * Switches to the same page in the other locale rather than dropping the
  * visitor on the home page: the current pathname is stripped of its locale
@@ -30,6 +39,8 @@ interface LanguageSwitcherProps {
 export function LanguageSwitcher({
   current,
   label,
+  switchLabel,
+  variant = "pair",
   tone = "dark",
   className,
 }: LanguageSwitcherProps) {
@@ -37,6 +48,43 @@ export function LanguageSwitcher({
   const pathname = usePathname() ?? "/";
   const basePath = stripLocale(pathname);
   const dark = tone === "dark";
+
+  /** Carry the current section anchor across the language change. */
+  const handleClick = (locale: Locale) => (event: React.MouseEvent) => {
+    const { hash } = window.location;
+    if (hash) {
+      event.preventDefault();
+      router.push(`${localePath(locale, basePath)}${hash}`);
+    }
+  };
+
+  const others = locales.filter((locale) => locale !== current);
+
+  // The compact form only makes sense with a single alternative; with more
+  // locales it falls back to listing them.
+  if (variant === "toggle" && others.length === 1) {
+    const target = others[0];
+
+    return (
+      <Link
+        href={localePath(target, basePath)}
+        hrefLang={target}
+        lang={target}
+        aria-label={switchLabel ?? label}
+        onClick={handleClick(target)}
+        className={cn(
+          "inline-flex items-center gap-1.5 border px-2.5 py-2 text-xs font-medium transition-colors",
+          dark
+            ? "border-white/25 text-white hover:border-white hover:bg-white/10"
+            : "border-ink-900/20 text-ink-900 hover:border-ink-900",
+          className,
+        )}
+      >
+        <Languages className="size-3.5 shrink-0" aria-hidden="true" />
+        {localeNames[target]}
+      </Link>
+    );
+  }
 
   return (
     <nav aria-label={label} className={cn("flex items-center", className)}>
@@ -61,17 +109,10 @@ export function LanguageSwitcher({
                 hrefLang={locale}
                 lang={locale}
                 aria-current={isCurrent ? "true" : undefined}
-                onClick={(event) => {
-                  // Carry the current section anchor across the language change,
-                  // so switching language keeps the visitor where they were.
-                  const { hash } = window.location;
-                  if (hash) {
-                    event.preventDefault();
-                    router.push(`${localePath(locale, basePath)}${hash}`);
-                  }
-                }}
+                onClick={handleClick(locale)}
+                // py-1.5 keeps the tap target comfortable on touch screens.
                 className={cn(
-                  "text-sm transition-colors",
+                  "py-1.5 text-sm transition-colors",
                   isCurrent
                     ? dark
                       ? "font-medium text-white"

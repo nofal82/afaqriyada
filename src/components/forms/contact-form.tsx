@@ -30,14 +30,15 @@ type FormCopy = Dictionary["contact"]["form"];
 
 interface ContactFormProps {
   dict: FormCopy;
-  /**
-   * Whether an email provider is configured on the server. When it is not, the
-   * form says so up front instead of letting a visitor submit into nothing.
-   */
-  deliveryConfigured: boolean;
 }
 
-export function ContactForm({ dict, deliveryConfigured }: ContactFormProps) {
+/**
+ * Only rendered when an email provider is configured — see `Contact`. Until
+ * then the contact section offers email directly, so a visitor is never shown a
+ * form that cannot deliver. The `not_configured` status below stays as a
+ * safety net in case the provider is removed while a page is already open.
+ */
+export function ContactForm({ dict }: ContactFormProps) {
   const formId = useId();
   const [values, setValues] = useState<ContactPayload>(EMPTY_FORM);
   const [errors, setErrors] = useState<ContactFieldErrors>({});
@@ -92,12 +93,6 @@ export function ContactForm({ dict, deliveryConfigured }: ContactFormProps) {
 
   return (
     <form onSubmit={onSubmit} noValidate className="space-y-6">
-      {!deliveryConfigured ? (
-        <StatusMessage tone="warning" icon={AlertTriangle}>
-          {dict.status.notConnectedLead} <SalesEmailLink /> {dict.status.notConnectedTail}
-        </StatusMessage>
-      ) : null}
-
       <div className="grid gap-6 sm:grid-cols-2">
         <Field
           id={`${formId}-name`}

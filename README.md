@@ -122,18 +122,27 @@ sitemap lists both locales with the same alternates. Organization and WebSite
 structured data are emitted per locale, with the other locale's company name as
 `alternateName` so both forms resolve to one organization.
 
-## Contact form
+## Contact
+
+**Email is the live channel.** No email provider is configured, so the contact
+section renders an email-first panel: a direct link to `sales@afaqriyada.com`
+and the details worth including in a first enquiry. The footer, the CTA section
+and the contact column carry the same two addresses.
+
+The inquiry form is still wired up and takes that slot **automatically** the
+moment an email provider is configured — `Contact` checks `isMailerConfigured()`
+and renders the form instead of the panel. That is why the form, its validation
+and the API route remain in the codebase: nothing is dead, it is gated. A
+visitor is never shown a form that cannot deliver, and no "not connected"
+notice appears anywhere.
 
 The form validates on the client and again on the server (`src/lib/contact.ts`
 is shared by both). The API route rate limits per IP, enforces a body size cap,
 sanitizes input before it reaches an email body, and includes a honeypot field.
+`POST /api/contact` returns `not_configured` while no provider is set, and never
+fakes a successful submission.
 
-**Email delivery is not connected.** No third-party service has been signed up
-for or configured. Until one is, `POST /api/contact` returns `not_configured`
-and the form states plainly that the message was not sent, pointing the visitor
-at `sales@afaqriyada.com`. It never fakes a successful submission.
-
-To connect delivery, copy `.env.example` to `.env.local` and set:
+To switch the form on, copy `.env.example` to `.env.local` and set:
 
 | Variable                 | Purpose                                             |
 | ------------------------ | --------------------------------------------------- |

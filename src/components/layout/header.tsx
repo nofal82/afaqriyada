@@ -80,11 +80,24 @@ export function Header({ locale, copy }: HeaderProps) {
           </ul>
         </nav>
 
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-3 sm:gap-4">
           <LanguageSwitcher
             current={locale}
             label={copy.nav.languageLabel}
             className="hidden md:flex"
+          />
+
+          {/*
+            Below md the pair does not fit beside the wordmark, so the header
+            carries a single-tap toggle to the other language. Without it the
+            only switcher on a phone sits inside the menu, two taps away.
+          */}
+          <LanguageSwitcher
+            current={locale}
+            label={copy.nav.languageLabel}
+            switchLabel={copy.nav.switchLanguage}
+            variant="toggle"
+            className="md:hidden"
           />
 
           <Link

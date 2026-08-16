@@ -4,6 +4,7 @@ import type { Dictionary } from "@/data/dictionaries";
 import { footerNavigation } from "@/data/navigation";
 import { localePath, type Locale } from "@/lib/i18n";
 import { Wordmark } from "@/components/ui/wordmark";
+import { LanguageSwitcher } from "./language-switcher";
 
 interface FooterProps {
   locale: Locale;
@@ -86,7 +87,13 @@ export function Footer({ locale, dict }: FooterProps) {
           </div>
         </div>
 
-        <div className="mt-14 flex flex-col gap-4 border-t border-line-dark pt-8 text-xs sm:flex-row sm:items-center sm:justify-between">
+        {/* A second, always-reachable place to change language — the footer is
+            where visitors look for it after reading the page. */}
+        <div className="mt-12">
+          <LanguageSwitcher current={locale} label={nav.languageLabel} />
+        </div>
+
+        <div className="mt-8 flex flex-col gap-4 border-t border-line-dark pt-8 text-xs sm:flex-row sm:items-center sm:justify-between">
           <p>
             © {currentYear} {brand.name}. {footer.rights}
           </p>

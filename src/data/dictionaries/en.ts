@@ -415,6 +415,17 @@ export const en = {
     salesHint: "Quotations, products, projects and technical requirements.",
     generalLabel: "General Inquiries",
     generalHint: "Company information and general communication.",
+    emailPanel: {
+      heading: "Send Your Requirement by Email",
+      body: "Technical and commercial enquiries are handled directly by email. Write to the sales address with the details of the application and we will respond with the relevant technical clarification.",
+      includeHeading: "Helpful to include",
+      include: [
+        "Application and operating conditions",
+        "Process medium, pressure and temperature",
+        "Quantities and scope of supply",
+        "Project stage and timeline",
+      ],
+    },
     form: {
       heading: "Send an Inquiry",
       requiredHint: "Fields marked with an asterisk are required.",
@@ -459,8 +470,6 @@ export const en = {
       status: {
         sent: "Your inquiry has been sent. We will respond to the address you provided.",
         invalid: "Please correct the highlighted fields and submit again.",
-        notConnectedLead: "Form delivery is not connected yet. Until it is, please email",
-        notConnectedTail: "directly.",
         notConfiguredLead:
           "Email delivery for this form is not connected yet, so this message was not sent. Please email",
         notConfiguredTail: "directly and we will respond.",

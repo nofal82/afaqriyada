@@ -1,0 +1,189 @@
+@import "tailwindcss";
+
+/*
+  Afaq Riyada — industrial engineering design system.
+  Colour direction: deep graphite/navy primary, industrial light-grey background,
+  a single controlled technical teal accent used sparingly.
+*/
+@theme {
+  --color-ink-950: #060c12;
+  --color-ink-900: #0a141c;
+  --color-ink-850: #0f1d27;
+  --color-ink-800: #142633;
+  --color-ink-700: #1d3444;
+  --color-ink-600: #2b4759;
+
+  --color-steel-700: #3c4d59;
+  --color-steel-600: #51646f;
+  --color-steel-500: #6b7d88;
+  --color-steel-400: #90a0aa;
+  --color-steel-300: #b6c2c9;
+
+  --color-mist-50: #fafbfb;
+  --color-mist-100: #f3f5f6;
+  --color-mist-200: #e8ebed;
+  --color-line: #dde2e6;
+  --color-line-dark: #1e3242;
+
+  --color-accent-700: #0a5f6d;
+  --color-accent-600: #0d7284;
+  --color-accent-500: #12889c;
+  --color-accent-400: #2aa5b8;
+  --color-accent-300: #6cc7d4;
+
+  --font-sans: var(--font-plex-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-plex-mono), ui-monospace, monospace;
+  --font-arabic: var(--font-plex-arabic), ui-sans-serif, system-ui, sans-serif;
+
+  --spacing-section: 6rem;
+}
+
+@layer base {
+  :root {
+    color-scheme: light;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    /* Offset anchor targets so the sticky header never covers a heading. */
+    scroll-padding-top: 6rem;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--color-mist-50);
+    color: var(--color-ink-900);
+    font-family: var(--font-sans);
+    text-rendering: optimizeLegibility;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    text-wrap: balance;
+    letter-spacing: -0.02em;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  /*
+    Arabic typography.
+
+    Arabic is not a bicameral script and carries no uppercase, no small-caps and
+    no letter-spacing conventions — applying the Latin treatments to it looks
+    broken rather than styled. It also needs a little more line height and a
+    slightly larger optical size to read comfortably at the same measure, and
+    negative tracking on headings would collide the joined letterforms.
+  */
+  :lang(ar) body,
+  html[dir="rtl"] body {
+    font-family: var(--font-arabic);
+    line-height: 1.75;
+  }
+
+  html[dir="rtl"] h1,
+  html[dir="rtl"] h2,
+  html[dir="rtl"] h3,
+  html[dir="rtl"] h4 {
+    letter-spacing: 0;
+    line-height: 1.4;
+  }
+
+  html[dir="rtl"] p,
+  html[dir="rtl"] li,
+  html[dir="rtl"] dd,
+  html[dir="rtl"] dt,
+  html[dir="rtl"] label {
+    letter-spacing: 0;
+  }
+
+  /* Latin fragments inside Arabic text — emails, trademarks — keep their face. */
+  html[dir="rtl"] [dir="ltr"],
+  html[dir="rtl"] :lang(en) {
+    font-family: var(--font-sans);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-accent-500);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  ::selection {
+    background-color: var(--color-accent-500);
+    color: #fff;
+  }
+}
+
+@layer components {
+  /* Technical eyebrow label used across sections. */
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    line-height: 1;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+
+  /*
+    The eyebrow is a Latin device: mono face, uppercase, wide tracking. In
+    Arabic it becomes a slightly smaller, medium-weight label in the Arabic
+    face — same hierarchy, script-appropriate execution.
+  */
+  html[dir="rtl"] .eyebrow {
+    font-family: var(--font-arabic);
+    font-size: 0.8125rem;
+    font-weight: 500;
+    letter-spacing: 0;
+    line-height: 1.6;
+    text-transform: none;
+  }
+
+  /* Fine engineering grid used as a restrained background texture. */
+  .grid-texture {
+    background-image:
+      linear-gradient(to right, color-mix(in srgb, currentColor 8%, transparent) 1px, transparent 1px),
+      linear-gradient(to bottom, color-mix(in srgb, currentColor 8%, transparent) 1px, transparent 1px);
+    background-size: 72px 72px;
+  }
+}
+
+/* Entrance motion — opt-in, minimal, and fully disabled for reduced motion. */
+@layer utilities {
+  .reveal {
+    opacity: 0;
+    transform: translateY(12px);
+    transition:
+      opacity 700ms cubic-bezier(0.22, 1, 0.36, 1),
+      transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .reveal[data-visible="true"] {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

@@ -14,11 +14,11 @@ export interface CompanyInfo {
   website: string;
   salesEmail: string;
   infoEmail: string;
-  /** Intentionally empty until the company provides an official number. */
+  /** Sales department number from the company profile. */
   phone: string;
 }
 
-export type CountryKey = "portugal" | "germany" | "international";
+export type CountryKey = "portugal" | "germany" | "liechtenstein" | "poland" | "uk" | "usa" | "switzerland" | "australia" | "italy";
 
 export interface Manufacturer {
   /** Trademark, kept in its official form in every locale. */
@@ -57,7 +57,16 @@ export type IllustrationVariant =
   | "glass-lined-reactor"
   | "mechanical-seal"
   | "thermoplastic-piping"
-  | "graphite-heat-exchanger";
+  | "graphite-heat-exchanger"
+  | "instrument"
+  | "hose"
+  | "steam"
+  | "corrosion"
+  | "filter"
+  | "drive"
+  | "gear"
+  | "belt"
+  | "chain";
 
 export interface Industry {
   slug: string;

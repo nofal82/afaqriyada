@@ -8,9 +8,7 @@ import { ar } from "@/data/dictionaries/ar";
 /**
  * Organization + WebSite structured data, emitted per locale.
  *
- * Only confirmed facts are published: name, website, city/country, and the two
- * public email addresses. No telephone, street address, coordinates, founding
- * date or legal identifiers are asserted, because none are confirmed. The
+ * Company name, address and sales phone follow the latest A4 profile. The
  * Arabic company name is published as `alternateName` so both forms resolve to
  * the same organization rather than looking like two companies.
  */
@@ -26,10 +24,13 @@ export function OrganizationSchema({ locale }: { locale: Locale }) {
       name: company.name,
       alternateName: locale === "ar" ? en.brand.name : ar.brand.name,
       url: company.website,
+      logo: `${company.website}/brand/icon.png`,
+      telephone: company.phone,
       description: dict.footer.description,
       address: {
         "@type": "PostalAddress",
         addressLocality: "Amman",
+        streetAddress: "Khalda, Amer Bin Malek St.",
         addressCountry: "JO",
       },
       areaServed: { "@type": "Country", name: "Jordan" },
@@ -39,6 +40,7 @@ export function OrganizationSchema({ locale }: { locale: Locale }) {
           "@type": "ContactPoint",
           contactType: "sales",
           email: company.salesEmail,
+          telephone: company.phone,
           availableLanguage: ["English", "Arabic"],
         },
         {

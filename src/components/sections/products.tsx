@@ -52,7 +52,7 @@ export function Products({ dict }: { dict: Dictionary["solutions"] }) {
               >
                 {categoryProducts.map((product, index) => (
                   <li key={product.slug} className="h-full">
-                    <Reveal delay={index * 70} className="h-full">
+                    <Reveal delay={(index % 3) * 70} className="h-full">
                       <ProductCard product={product} dict={dict} />
                     </Reveal>
                   </li>

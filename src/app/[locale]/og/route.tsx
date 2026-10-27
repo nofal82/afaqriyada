@@ -85,6 +85,7 @@ export async function GET(
   const dict = getDictionary(locale);
   const rtl = direction(locale) === "rtl";
   const fontData = await loadFont(locale);
+  const wordmark = await readFile(join(process.cwd(), "public/brand/wordmark.svg"));
 
   return new ImageResponse(
     (
@@ -112,13 +113,12 @@ export async function GET(
             gap: "20px",
           }}
         >
-          <div
-            style={{ width: 56, height: 56, border: "3px solid #2aa5b8", display: "flex" }}
-          />
-          <Line
-            text={rtl ? dict.brand.name : dict.brand.name.toUpperCase()}
-            rtl={rtl}
-            style={{ fontSize: 30, letterSpacing: rtl ? 0 : "0.18em", columnGap: 10 }}
+          {/* eslint-disable-next-line @next/next/no-img-element -- ImageResponse requires native image elements. */}
+          <img
+            src={`data:image/svg+xml;base64,${wordmark.toString("base64")}`}
+            alt={dict.brand.name}
+            width={420}
+            height={43}
           />
         </div>
 
@@ -157,7 +157,7 @@ export async function GET(
             paddingTop: 28,
           }}
         >
-          <Line text={dict.common.location} rtl={rtl} style={{ columnGap: 8 }} />
+          <Line text={rtl ? "عمّان، الأردن" : "Amman, Jordan"} rtl={rtl} style={{ columnGap: 8 }} />
           <span style={{ direction: "ltr" }}>{company.domain}</span>
         </div>
       </div>

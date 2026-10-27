@@ -298,6 +298,42 @@ function GraphiteHeatExchanger() {
   );
 }
 
+function Instrument() {
+  return <Frame><circle cx="200" cy="100" r="58" stroke="currentColor" strokeWidth="1.6" /><path d="M200 158v52m-25 0h50M160 100h10m60 0h10M200 60v10m-30 0 8 8m52-8-8 8M200 100l25-30" stroke="currentColor" strokeWidth="1.6" /><circle cx="200" cy="100" r="4" fill="currentColor" /></Frame>;
+}
+
+function Hose() {
+  return <Frame><path d="M70 70h65c100 0 10 120 110 120h85M70 90h65c60 0-10 120 110 120h85" stroke="currentColor" strokeWidth="1.6" /><path d="M56 60h14v40H56zM330 180h14v40h-14zM85 70v20m15-20v20m15-20v20m150 100v20m15-20v20m15-20v20m15-20v20" stroke="currentColor" strokeWidth="1.4" /></Frame>;
+}
+
+function Steam() {
+  return <Frame><path d="M40 132h100m120 0h100M65 112v40m270-40v40M140 100h120v65H140zM155 165l20 25h50l20-25M200 100V60m-35 0h70" stroke="currentColor" strokeWidth="1.6" /><path d="M177 48c-12-15 12-18 0-32m23 32c-12-15 12-18 0-32m23 32c-12-15 12-18 0-32" stroke="currentColor" strokeWidth="1.2" opacity=".6" /></Frame>;
+}
+
+function Corrosion() {
+  return <Frame><path d="M65 130h95v-65h110v130h65M65 150h115V85h70v130h85M55 115h10v50H55zM335 180h10v50h-10z" stroke="currentColor" strokeWidth="1.6" /><path d="M70 140h100V75h90v130h70" stroke="currentColor" strokeWidth="3" className={ACCENT} opacity=".7" /></Frame>;
+}
+
+function Filter() {
+  return <Frame><path d="M125 70h150v125H125zM125 70l25-20h100l25 20M125 195l25 20h100l25-20M65 100h60m150 65h60M160 215v15m80-15v15" stroke="currentColor" strokeWidth="1.6" />{[155,185,215,245].map(x=><path key={x} d={`M${x} 90v85m-7-85h14m-14 85h14`} stroke="currentColor" strokeWidth="2" className={ACCENT} />)}</Frame>;
+}
+
+function Drive() {
+  return <Frame><rect x="70" y="90" width="145" height="90" rx="6" stroke="currentColor" strokeWidth="1.6" /><path d="M95 90v90m25-90v90m25-90v90m25-90v90M215 120h30m0-40h80v120h-80zM325 140h30M80 180v25h130v-25M245 200v10h80v-10" stroke="currentColor" strokeWidth="1.4" /><circle cx="285" cy="140" r="26" stroke="currentColor" strokeWidth="1.6" className={ACCENT} /></Frame>;
+}
+
+function Gear() {
+  return <Frame><circle cx="200" cy="130" r="58" stroke="currentColor" strokeWidth="1.6" /><circle cx="200" cy="130" r="25" stroke="currentColor" strokeWidth="1.6" />{Array.from({length:12},(_,i)=><path key={i} d="M190 72v-18h20v18" transform={`rotate(${i*30} 200 130)`} stroke="currentColor" strokeWidth="1.6" />)}<path d="M200 105v50m-25-25h50" stroke="currentColor" strokeWidth=".8" opacity=".5" /></Frame>;
+}
+
+function Belt() {
+  return <Frame><rect x="65" y="90" width="270" height="80" rx="40" stroke="currentColor" strokeWidth="1.6" /><circle cx="105" cy="130" r="28" stroke="currentColor" strokeWidth="1.4" /><circle cx="295" cy="130" r="28" stroke="currentColor" strokeWidth="1.4" /><path d="M105 102h190m-190 56h190M105 170v35m190-35v35M80 205h50m140 0h50" stroke="currentColor" strokeWidth="1.4" />{[155,200,245].map(x=><circle key={x} cx={x} cy="130" r="15" stroke="currentColor" strokeWidth="1.2" />)}</Frame>;
+}
+
+function Chain() {
+  return <Frame>{[75,145,215,285].map(x=><g key={x}><rect x={x} y="110" width="65" height="40" rx="20" stroke="currentColor" strokeWidth="1.6" /><circle cx={x+17} cy="130" r="6" stroke="currentColor" /><circle cx={x+48} cy="130" r="6" stroke="currentColor" /></g>)}<path d="M123 119h39m31 0h39m31 0h39M123 141h39m31 0h39m31 0h39" stroke="currentColor" strokeWidth="2" className={ACCENT} /></Frame>;
+}
+
 const variants: Record<IllustrationVariant, () => React.JSX.Element> = {
   "surge-vessel": SurgeVessel,
   pump: Pump,
@@ -308,6 +344,15 @@ const variants: Record<IllustrationVariant, () => React.JSX.Element> = {
   "mechanical-seal": MechanicalSeal,
   "thermoplastic-piping": ThermoplasticPiping,
   "graphite-heat-exchanger": GraphiteHeatExchanger,
+  instrument: Instrument,
+  hose: Hose,
+  steam: Steam,
+  corrosion: Corrosion,
+  filter: Filter,
+  drive: Drive,
+  gear: Gear,
+  belt: Belt,
+  chain: Chain,
 };
 
 interface TechnicalIllustrationProps {

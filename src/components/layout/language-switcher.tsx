@@ -51,10 +51,11 @@ export function LanguageSwitcher({
 
   /** Carry the current section anchor across the language change. */
   const handleClick = (locale: Locale) => (event: React.MouseEvent) => {
-    const { hash } = window.location;
-    if (hash) {
+    if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    const { hash, search } = window.location;
+    if (hash || search) {
       event.preventDefault();
-      router.push(`${localePath(locale, basePath)}${hash}`);
+      router.push(`${localePath(locale, basePath)}${search}${hash}`);
     }
   };
 
@@ -73,7 +74,7 @@ export function LanguageSwitcher({
         aria-label={switchLabel ?? label}
         onClick={handleClick(target)}
         className={cn(
-          "inline-flex items-center gap-1.5 border px-2.5 py-2 text-xs font-medium transition-colors",
+          "inline-flex min-h-11 min-w-11 items-center justify-center gap-1.5 border px-2.5 py-2 text-xs font-medium transition-colors",
           dark
             ? "border-white/25 text-white hover:border-white hover:bg-white/10"
             : "border-ink-900/20 text-ink-900 hover:border-ink-900",
@@ -110,9 +111,8 @@ export function LanguageSwitcher({
                 lang={locale}
                 aria-current={isCurrent ? "true" : undefined}
                 onClick={handleClick(locale)}
-                // py-1.5 keeps the tap target comfortable on touch screens.
                 className={cn(
-                  "py-1.5 text-sm transition-colors",
+                  "inline-flex min-h-11 min-w-11 items-center justify-center text-sm transition-colors",
                   isCurrent
                     ? dark
                       ? "font-medium text-white"

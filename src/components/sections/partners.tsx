@@ -37,7 +37,7 @@ export function Partners({
       <ul className="mt-14 grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
         {manufacturers.map((manufacturer, index) => (
           <li key={manufacturer.slug} className="h-full">
-            <Reveal delay={index * 60} className="h-full">
+            <Reveal delay={(index % 3) * 60} className="h-full">
               <PartnerCard
               manufacturer={manufacturer}
               dict={dict}

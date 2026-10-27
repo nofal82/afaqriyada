@@ -1,71 +1,136 @@
 import type { ProductSolution, SolutionCategory, SolutionCategorySlug } from "./types";
 
-export const solutionCategories: SolutionCategory[] = [
-  { slug: "water-wastewater" },
-  { slug: "industrial-process" },
-];
+export const solutionCategories: SolutionCategory[] = [{ slug: "water-wastewater" }, { slug: "industrial-process" }];
 
-/**
- * Product groups offered by Afaq Riyada — structure only.
- *
- * Titles, descriptions and application tags are translated per locale in the
- * dictionaries, keyed by `slug`. Where a manufacturer is not yet confirmed,
- * `manufacturers` is omitted and the card says so instead of naming one. No
- * model numbers, ratings, materials or capacities appear anywhere; those come
- * from manufacturer documentation per enquiry.
- */
 export const products: ProductSolution[] = [
   {
-    slug: "surge-vessels",
-    category: "water-wastewater",
-    manufacturers: ["henriques-henriques"],
-    illustration: "surge-vessel",
+    "slug": "surge-vessels",
+    "category": "water-wastewater",
+    "manufacturers": [
+      "henriques-henriques"
+    ],
+    "illustration": "surge-vessel"
   },
   {
-    slug: "pumps",
-    category: "water-wastewater",
-    illustration: "pump",
+    "slug": "instrumentation",
+    "category": "water-wastewater",
+    "manufacturers": [
+      "kobold"
+    ],
+    "illustration": "instrument"
   },
   {
-    slug: "water-industrial-valves",
-    category: "water-wastewater",
-    illustration: "valve",
+    "slug": "process-valves",
+    "category": "water-wastewater",
+    "manufacturers": [
+      "gemu"
+    ],
+    "illustration": "diaphragm-valve"
   },
   {
-    slug: "gaskets-sealing",
-    category: "industrial-process",
-    manufacturers: ["kwo", "teadit"],
-    illustration: "gasket",
+    "slug": "pumps",
+    "category": "water-wastewater",
+    "manufacturers": [
+      "lutz"
+    ],
+    "illustration": "pump"
   },
   {
-    slug: "process-valves",
-    category: "industrial-process",
-    manufacturers: ["gemu"],
-    illustration: "diaphragm-valve",
+    "slug": "gaskets-sealing",
+    "category": "industrial-process",
+    "manufacturers": [
+      "kwo"
+    ],
+    "illustration": "gasket"
   },
   {
-    slug: "glass-lined-equipment",
-    category: "industrial-process",
-    manufacturers: ["thaletec"],
-    illustration: "glass-lined-reactor",
+    "slug": "mechanical-seals",
+    "category": "industrial-process",
+    "manufacturers": [
+      "depac"
+    ],
+    "illustration": "mechanical-seal"
   },
   {
-    slug: "mechanical-seals",
-    category: "industrial-process",
-    illustration: "mechanical-seal",
+    "slug": "special-gaskets",
+    "category": "industrial-process",
+    "manufacturers": [
+      "spetech"
+    ],
+    "illustration": "gasket"
   },
   {
-    slug: "thermoplastic-solutions",
-    category: "industrial-process",
-    manufacturers: ["simona"],
-    illustration: "thermoplastic-piping",
+    "slug": "hose-assemblies",
+    "category": "industrial-process",
+    "manufacturers": [
+      "flextech"
+    ],
+    "illustration": "hose"
   },
   {
-    slug: "graphite-process-technology",
-    category: "industrial-process",
-    manufacturers: ["sgl-carbon"],
-    illustration: "graphite-heat-exchanger",
+    "slug": "steam-systems",
+    "category": "industrial-process",
+    "manufacturers": [
+      "valsteam-adca"
+    ],
+    "illustration": "steam"
   },
+  {
+    "slug": "corrosion-resistant-handling",
+    "category": "industrial-process",
+    "manufacturers": [
+      "andronaco"
+    ],
+    "illustration": "corrosion"
+  },
+  {
+    "slug": "sensors-measurement",
+    "category": "industrial-process",
+    "manufacturers": [
+      "baumer"
+    ],
+    "illustration": "instrument"
+  },
+  {
+    "slug": "industrial-filtration",
+    "category": "industrial-process",
+    "manufacturers": [
+      "junker-filter"
+    ],
+    "illustration": "filter"
+  },
+  {
+    "slug": "drives-automation",
+    "category": "industrial-process",
+    "manufacturers": [
+      "sew-eurodrive"
+    ],
+    "illustration": "drive"
+  },
+  {
+    "slug": "gears-engineering",
+    "category": "industrial-process",
+    "manufacturers": [
+      "hofmann-engineering"
+    ],
+    "illustration": "gear"
+  },
+  {
+    "slug": "conveyor-belts",
+    "category": "industrial-process",
+    "manufacturers": [
+      "sig"
+    ],
+    "illustration": "belt"
+  },
+  {
+    "slug": "industrial-chains",
+    "category": "industrial-process",
+    "manufacturers": [
+      "zmc"
+    ],
+    "illustration": "chain"
+  }
 ];
 
 export function productsByCategory(category: SolutionCategorySlug) {

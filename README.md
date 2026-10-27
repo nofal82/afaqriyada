@@ -162,18 +162,25 @@ site is deployed across multiple instances, back it with a shared store.
 
 ### Manufacturer logos — `public/partners/`
 
-Each logo was taken from the manufacturer's own current official website and is
+The current portfolio logos were extracted from the supplied company-profile flipbook and are
 displayed unmodified at its original aspect ratio, for identification only.
 `PartnerCard` falls back to the manufacturer name set in the site typeface if a
 logo is ever removed — it never redraws or imitates a logo.
 
 ### Afaq Riyada branding — `public/brand/`
 
-No official logo has been supplied, so the header uses a temporary typographic
-wordmark (`src/components/ui/wordmark.tsx`) rather than an invented logo. When
-a real asset is available, add it to `public/brand/` and set `BRAND_LOGO` in
-that component — the header, footer and mobile navigation pick it up
-automatically.
+The header, footer, mobile navigation and social previews use the supplied official
+wordmark, exported directly from its Illustrator vector paths to `public/brand/wordmark.svg`.
+The official icon supplies the SVG favicon, ICO, Apple icon and organization logo.
+The artwork colours are preserved. The wordmark background is transparent for dark placements.
+
+### Company profile
+
+`public/company-profile/afaq-riyada-company-profile-a4.pdf` is the supplied portrait A4
+profile, unchanged. `public/company-profile/index.html` is the supplied standalone
+flipbook with its second contact aligned to the PDF's Sales Department contact.
+Both are English documents, labelled accordingly on the Arabic website. The original
+files in `updates/` remain unchanged. See `DEPLOYMENT.md` before updating production.
 
 ### Fonts
 
@@ -196,14 +203,12 @@ render them through `next/image` in `ProductCard` in place of
 
 ## Content accuracy
 
-Manufacturer descriptions were written from each manufacturer's current official
-website (`officialWebsite` in `src/data/partners.ts`). The site deliberately does
-**not** state distributor, agency, authorization or exclusivity status, and does
-not publish specifications, capacities, ratings, certifications, project
-references, founding dates, staff numbers, phone numbers or street addresses,
-because none of those have been confirmed. Where a manufacturer is not yet
-assigned to a product group (pumps, water/industrial valves, mechanical seals),
-the card says so instead of naming one.
+The current manufacturer portfolio, product descriptions and contact details follow
+the supplied A4 company profile. English and Arabic cover the same technology groups.
+Manufacturer names and links identify the technologies; the site does not claim
+distributor, agency, authorization or exclusivity status. It does not invent
+capacities, ratings, certifications, project references, founding dates or staff
+numbers. Phone numbers and the street address now come from the supplied profile.
 
 ### Known behaviour
 
@@ -216,3 +221,22 @@ the router handles rewritten segment prefetches.
 The Arabic company name (آفاق ريادة) and the Arabic copy throughout are a written
 translation and should be reviewed by the company before launch, in particular
 the rendering of the company name itself.
+
+## Mobile navigation and product enquiries
+
+Logo links in the header, footer and mobile menu return to the current language's
+homepage. On the homepage they explicitly scroll to the top without reloading or
+clearing the enquiry draft. The menu closes before returning home. Header effects
+avoid creating a containing block that would clip the fixed mobile menu after scrolling.
+
+Standalone navigation, logo, language, profile, partner and contact controls have
+larger touch areas. The mobile menu includes a localized Call Sales telephone link.
+Manufacturer summaries are brief; detailed technology descriptions stay in product cards.
+
+Discuss This Solution carries a validated product slug in `?solution=<slug>#enquiry`
+and scrolls directly to the enquiry panel. The selection is shown with a clear action.
+Configured forms suggest the enquiry category and prepend the localized product title
+to the outgoing message without overwriting typed fields. Without a configured mailer,
+the sales email link includes the selected product in its subject and body. Language
+switching preserves the product selection and translates its display text. Selection
+is stored in the URL, not local storage; unknown slugs are ignored.

@@ -5,8 +5,9 @@ import Link from "next/link";
 import { Menu } from "lucide-react";
 import { primaryCtaHref, primaryNavigation } from "@/data/navigation";
 import type { Dictionary } from "@/data/dictionaries";
-import { localePath, type Locale } from "@/lib/i18n";
+import { type Locale } from "@/lib/i18n";
 import { Wordmark } from "@/components/ui/wordmark";
+import { HomeLink } from "@/components/ui/home-link";
 import { LanguageSwitcher } from "./language-switcher";
 import { MobileNavigation } from "./mobile-navigation";
 import { cn } from "@/lib/utils";
@@ -47,23 +48,19 @@ export function Header({ locale, copy }: HeaderProps) {
       className={cn(
         "fixed inset-x-0 top-0 z-40 transition-colors duration-300",
         scrolled
-          ? "border-b border-line-dark bg-ink-900/95 backdrop-blur-sm"
+          ? "border-b border-line-dark bg-ink-900/95"
           : "border-b border-white/10 bg-transparent",
       )}
     >
       <div className="mx-auto flex h-20 max-w-[88rem] items-center justify-between gap-6 px-5 sm:px-8 lg:px-12">
-        <Link
-          href={localePath(locale, "/")}
-          aria-label={copy.brand.homeAriaLabel}
-          className="shrink-0"
-        >
+        <HomeLink locale={locale} label={copy.brand.homeAriaLabel}>
           <Wordmark
             name={copy.brand.name}
             tagline={copy.brand.tagline}
             tone="dark"
             uppercase={locale === "en"}
           />
-        </Link>
+        </HomeLink>
 
         <nav aria-label={copy.nav.primaryNavLabel} className="hidden lg:block">
           <ul className="flex items-center gap-9">
@@ -71,7 +68,7 @@ export function Header({ locale, copy }: HeaderProps) {
               <li key={item.key}>
                 <Link
                   href={item.href}
-                  className="text-sm text-steel-300 transition-colors duration-200 hover:text-white"
+                  className="inline-flex min-h-11 items-center text-sm text-steel-300 transition-colors duration-200 hover:text-white"
                 >
                   {copy.nav.labels[item.key]}
                 </Link>
@@ -110,7 +107,7 @@ export function Header({ locale, copy }: HeaderProps) {
           <button
             type="button"
             onClick={() => setMenuOpen(true)}
-            className="-me-2 p-2 text-white lg:hidden"
+            className="-me-2 inline-flex size-11 items-center justify-center text-white lg:hidden"
             aria-label={copy.nav.openMenu}
             aria-expanded={menuOpen}
             aria-controls={MOBILE_NAV_ID}

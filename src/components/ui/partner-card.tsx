@@ -56,7 +56,7 @@ export function PartnerCard({ manufacturer, dict, opensInNewTab }: PartnerCardPr
             href={officialWebsite}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 text-sm text-steel-300 transition-colors hover:text-accent-300"
+            className="inline-flex min-h-11 items-center gap-1.5 text-sm text-steel-300 transition-colors hover:text-accent-300"
           >
             {dict.linkLabel}
             <span className="sr-only">

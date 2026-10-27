@@ -1,5 +1,43 @@
 # Company profile and branding update
 
+## Current production and the usability follow-up
+
+The company-profile release has been deployed successfully. Production runs as
+`www-data` under `afaqriyada.service`, with `WorkingDirectory=/opt/afaqriyada`
+and `/usr/bin/node node_modules/next/dist/bin/next start` on port 3121. The reported
+server runtime is Node 22.23.2 and npm 10.9.8. Nginx proxies to localhost:3121.
+
+The user prefers a folder swap, keeping both systemd and Nginx unchanged. Use this
+procedure for subsequent releases; the earlier generic release-directory notes
+below are historical guidance, not instructions to change the service definition.
+
+1. Clone `codex/company-profile-update` into `/opt/afaqriyada.new`. Stop if that
+   directory already exists. Compare its commit with the latest reviewed commit.
+2. Copy the current `.env.local` and modified `package-lock.json` into the new
+   folder. Give the environment file mode 600, owned by `www-data`, and make the
+   new project owned by `www-data`.
+3. Inside the new folder, as `www-data`, run `npm ci --include=dev`,
+   `npm run lint`, and `NODE_ENV=production npm run build`. Use a writable npm
+   cache, such as `/opt/afaqriyada.new/.npm-cache`. Stop on any failure. The live
+   process remains running during this preparation.
+4. Confirm `.next/BUILD_ID` exists. Choose an unused backup name, such as
+   `/opt/afaqriyada.old-before-ux`; the previous `/opt/afaqriyada.old` may already
+   exist and must not be overwritten.
+5. Stop `afaqriyada.service`, rename the current project to the chosen backup,
+   rename `/opt/afaqriyada.new` to `/opt/afaqriyada`, and start the same service.
+   There is a brief interruption during this swap and restart.
+6. Check the service, localhost:3121, public English/Arabic pages and logs. Verify
+   the logo after scrolling, mobile menu and Call Sales, product selection in both
+   enquiry modes as applicable, and language switching. Keep all previous backups.
+7. If the new release fails, stop the service, move the failed project to a new,
+   unused name, restore the chosen backup to `/opt/afaqriyada`, then start and
+   verify the service. Its previous build and environment remain available.
+
+This follow-up adds logo home/top navigation, larger tap targets, mobile Call Sales,
+product enquiry context, shorter manufacturer summaries, and fixes mobile-menu
+clipping after scrolling. No dependency, Nginx, systemd or mail-provider changes
+are required. The Linux build is still required; do not upload the Windows build.
+
 ## Reviewed baseline
 
 Production and the local source were both at commit

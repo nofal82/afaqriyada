@@ -54,6 +54,7 @@ export const en = {
       privacy: "Privacy Policy",
       legal: "Legal Notice",
     },
+    callSales: "Call Sales",
     cta: "Discuss Your Requirement",
     primaryNavLabel: "Primary",
     openMenu: "Open navigation menu",
@@ -361,67 +362,67 @@ export const en = {
     items: {
       "henriques-henriques": {
         "category": "Surge vessels & pressure equipment",
-        "description": "Manufacturer of metal tanks and pressure equipment for water and environmental applications."
+        "description": "Metal tanks, surge vessels and pressure equipment for water applications."
       },
       "kobold": {
         "category": "Measurement & control",
-        "description": "Instruments for monitoring, measuring and regulating flow, pressure, level and temperature."
+        "description": "Instruments for flow, pressure, level and temperature measurement."
       },
       "gemu": {
         "category": "Valves & control systems",
-        "description": "Valve, measurement and control technologies for liquids, vapours and gases."
+        "description": "Valve, measurement and control systems for liquids, vapours and gases."
       },
       "lutz": {
         "category": "Drum & container pumps",
-        "description": "Pump systems for transferring and filling liquids from drums, containers and process installations."
+        "description": "Pumps for liquid transfer from drums, containers and process installations."
       },
       "kwo": {
         "category": "Expanded PTFE sealing",
-        "description": "Specialist in expanded PTFE gasket tapes, rings and sheets for industrial sealing applications."
+        "description": "Expanded PTFE gasket tapes, rings and sheets for industrial sealing."
       },
       "depac": {
         "category": "Mechanical seals & packings",
-        "description": "Mechanical sealing technologies for pumps, compressors, agitators and reactors."
+        "description": "Mechanical seals, seal supply systems and packings for process equipment."
       },
       "spetech": {
         "category": "Special gaskets & packings",
-        "description": "Industrial sealing products for pressure vessels, heat exchangers, reactors and valves."
+        "description": "Special gaskets and packings for pressure equipment and valves."
       },
       "flextech": {
         "category": "Flexible hose assemblies",
-        "description": "Engineered hose assemblies for transferring food, beverages, pharmaceuticals, water, fuels and chemicals."
+        "description": "Engineered flexible hose assemblies for industrial fluid transfer."
       },
       "valsteam-adca": {
         "category": "Steam & fluid systems",
-        "description": "Steam and fluid system products for industrial applications, including the ADCAPure hygienic range."
+        "description": "Steam and fluid systems, including ADCAPure hygienic products."
       },
       "andronaco": {
         "category": "Corrosion-resistant handling",
-        "description": "Polymer and composite fluid-handling products for corrosive and ultra-pure applications."
+        "description": "Corrosion-resistant polymer and composite fluid-handling equipment."
       },
       "baumer": {
         "category": "Sensors & measuring instruments",
-        "description": "Sensors, encoders and measuring instruments for factory and process automation."
+        "description": "Sensors, encoders and measuring instruments for industrial automation."
       },
       "junker-filter": {
         "category": "Industrial filtration",
-        "description": "Tailor-made filtration technologies for industrial solid/liquid separation and dust separation."
+        "description": "Industrial filtration for solid/liquid separation and dust collection."
       },
       "sew-eurodrive": {
         "category": "Drives & automation",
-        "description": "Drive and automation technologies, from gearmotors and industrial gear units to electronic drives."
+        "description": "Gearmotors, industrial gear units and drive automation technologies."
       },
       "hofmann-engineering": {
         "category": "Gears & precision engineering",
-        "description": "Gear manufacture and refurbishment, supported by precision engineering and heavy machining."
+        "description": "Gear manufacture, refurbishment and precision engineering."
       },
       "sig": {
         "category": "Conveyor & elevator belts",
-        "description": "Rubber conveyor and elevator belts with textile or steel carcasses for bulk material handling."
+        "description": "Conveyor and elevator belts for bulk material handling."
       },
       "zmc": {
         "category": "Industrial chains",
-        "description": "Standard and special industrial chains and conveyor systems for industrial handling applications."
+        "description": "Standard and special industrial chains and conveyor systems."
       }
     },
   },
@@ -502,6 +503,12 @@ export const en = {
     "salesHint": "Quotations, products, projects and technical requirements.",
     "generalLabel": "General Inquiries",
     "generalHint": "Company information and general communication.",
+    selection: {
+      "label": "Solution of interest",
+      "clear": "Clear selection",
+      "subject": "Product enquiry",
+      "emailPrompt": "Please add your requirements, quantities and operating conditions."
+    },
     "emailPanel": {
       "heading": "Send Your Requirement by Email",
       "body": "Technical and commercial enquiries are handled directly by email. Write to the sales address with the details of the application and we will respond with the relevant technical clarification.",

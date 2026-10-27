@@ -39,7 +39,7 @@ export default async function HomePage({ params }: PageProps<"/[locale]">) {
       <WhyAfaqRiyada dict={dict.whyUs} />
       <EngineeringProcess dict={dict.process} />
       <CallToAction dict={dict.cta} />
-      <Contact dict={dict.contact} location={dict.common.location} />
+      <Contact dict={dict.contact} location={dict.common.location} solutions={dict.solutions.items} />
     </main>
   );
 }

@@ -4,8 +4,10 @@ import { useId, useState, type FormEvent, type ReactNode } from "react";
 import { AlertTriangle, CheckCircle2, ChevronDown, Loader2 } from "lucide-react";
 import { company } from "@/data/company";
 import type { Dictionary } from "@/data/dictionaries";
+import { solutionAreas, useSelectedSolution } from "@/lib/solution-enquiry";
 import {
   FIELD_LIMITS,
+  MIN_MESSAGE_LENGTH,
   validateContactPayload,
   type ContactFieldErrors,
   type ContactPayload,
@@ -30,6 +32,8 @@ type FormCopy = Dictionary["contact"]["form"];
 
 interface ContactFormProps {
   dict: FormCopy;
+  solutions: Dictionary["solutions"]["items"];
+  selection: Dictionary["contact"]["selection"];
 }
 
 /**
@@ -38,11 +42,15 @@ interface ContactFormProps {
  * form that cannot deliver. The `not_configured` status below stays as a
  * safety net in case the provider is removed while a page is already open.
  */
-export function ContactForm({ dict }: ContactFormProps) {
+export function ContactForm({ dict, solutions, selection }: ContactFormProps) {
   const formId = useId();
   const [values, setValues] = useState<ContactPayload>(EMPTY_FORM);
   const [errors, setErrors] = useState<ContactFieldErrors>({});
   const [status, setStatus] = useState<Status>("idle");
+  const selectedSlug = useSelectedSolution();
+  const selected = solutions[selectedSlug as keyof typeof solutions];
+  const enquiryPrefix = selected ? `${selection.label}: ${selected.title}\n\n` : "";
+  const areaOfInterest = values.areaOfInterest || solutionAreas[selectedSlug] || "";
 
   const message = (key: ValidationKey | undefined) => (key ? dict.validation[key] : undefined);
 
@@ -56,7 +64,13 @@ export function ContactForm({ dict }: ContactFormProps) {
   async function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
-    const { errors: clientErrors, data } = validateContactPayload(values);
+    const { errors: clientErrors, data } = validateContactPayload({
+      ...values,
+      areaOfInterest,
+      message: enquiryPrefix + values.message,
+    });
+    // The product label is context, not a substitute for the visitor's message.
+    if (values.message.trim().length < MIN_MESSAGE_LENGTH) clientErrors.message = "messageTooShort";
     if (Object.keys(clientErrors).length > 0) {
       setErrors(clientErrors);
       setStatus("invalid");
@@ -151,13 +165,13 @@ export function ContactForm({ dict }: ContactFormProps) {
             id={`${formId}-area`}
             name="areaOfInterest"
             required
-            value={values.areaOfInterest}
+            value={areaOfInterest}
             onChange={(event) => update("areaOfInterest", event.target.value)}
             aria-invalid={errors.areaOfInterest ? true : undefined}
             aria-describedby={errors.areaOfInterest ? `${formId}-area-error` : undefined}
             className={cn(
               "w-full appearance-none border bg-white py-3 ps-3.5 pe-11 text-[0.9375rem] transition-colors",
-              values.areaOfInterest ? "text-ink-900" : "text-steel-500",
+              areaOfInterest ? "text-ink-900" : "text-steel-500",
               errors.areaOfInterest ? "border-red-600" : "border-line hover:border-steel-400",
             )}
           >
@@ -185,7 +199,7 @@ export function ContactForm({ dict }: ContactFormProps) {
           name="message"
           required
           rows={6}
-          maxLength={FIELD_LIMITS.message}
+          maxLength={FIELD_LIMITS.message - enquiryPrefix.length}
           value={values.message}
           onChange={(event) => update("message", event.target.value)}
           aria-invalid={errors.message ? true : undefined}

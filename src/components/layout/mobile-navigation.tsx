@@ -2,10 +2,12 @@
 
 import { useEffect, useRef } from "react";
 import Link from "next/link";
-import { X } from "lucide-react";
+import { X, Phone } from "lucide-react";
+import { company } from "@/data/company";
 import { primaryCtaHref, primaryNavigation } from "@/data/navigation";
 import type { Locale } from "@/lib/i18n";
 import { Wordmark } from "@/components/ui/wordmark";
+import { HomeLink } from "@/components/ui/home-link";
 import { LanguageSwitcher } from "./language-switcher";
 import type { HeaderCopy } from "./header";
 
@@ -91,17 +93,19 @@ export function MobileNavigation({
         className="absolute inset-x-0 top-0 flex max-h-full flex-col overflow-y-auto bg-ink-900 pb-10"
       >
         <div className="flex items-center justify-between border-b border-line-dark px-5 py-4">
+          <HomeLink locale={locale} label={copy.brand.homeAriaLabel} onNavigate={onClose}>
           <Wordmark
             name={copy.brand.name}
             tagline={copy.brand.tagline}
             tone="dark"
             uppercase={locale === "en"}
           />
+          </HomeLink>
           <button
             ref={closeButtonRef}
             type="button"
             onClick={onClose}
-            className="p-2 text-steel-300 transition-colors hover:text-white"
+            className="inline-flex size-11 items-center justify-center text-steel-300 transition-colors hover:text-white"
             aria-label={copy.nav.closeMenu}
           >
             <X className="size-6" aria-hidden="true" />
@@ -133,12 +137,16 @@ export function MobileNavigation({
             {copy.nav.cta}
           </Link>
 
+          <a href={`tel:${company.phone}`} onClick={onClose} className="flex min-h-11 items-center justify-center gap-2 border border-white/25 px-5 py-3 text-sm font-medium text-white transition-colors hover:bg-white/10">
+            <Phone className="size-4" aria-hidden="true" />{copy.nav.callSales}
+          </a>
+
           <div className="flex items-center justify-between border-t border-line-dark pt-5">
             <LanguageSwitcher current={locale} label={copy.nav.languageLabel} />
             <a
               href={`mailto:${copy.salesEmail}`}
               dir="ltr"
-              className="font-mono text-xs tracking-wide text-steel-400 transition-colors hover:text-accent-300"
+              className="inline-flex min-h-11 items-center font-mono text-xs tracking-wide text-steel-400 transition-colors hover:text-accent-300"
             >
               {copy.salesEmail}
             </a>

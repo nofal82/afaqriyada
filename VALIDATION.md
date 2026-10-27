@@ -1,4 +1,28 @@
-# Local validation: company profile update
+# Local validation: mobile usability update
+
+Production build, TypeScript, lint and whitespace checks passed for the usability
+follow-up. Headless Chrome passed **180 interaction checks**: 93 with the configured
+form and 87 with the email fallback. Both builds were tested in English and Arabic
+at 320, 375, 768, 1024, 1280 and 1440 CSS pixels. The email build also covered touch
+input at 375 x 667 with normal motion preferences.
+
+Verified header, footer and menu logo navigation; same-page return to top without
+reload; home links from legal/privacy pages; enlarged header touch areas; reachable
+Call Sales after scrolling and on short screens; no overlapping header controls or
+horizontal page overflow; product-specific enquiry context, category selection,
+message/details preservation, payload context and validation; direct URLs, clearing
+selection, unknown slugs, and language switching with translated selection retained.
+Product clicks land directly at the visible enquiry panel. No browser JavaScript
+errors occurred. Screenshots of both languages and contact variants were reviewed.
+
+The form build used placeholder provider settings only. All enquiry POSTs were
+intercepted in the browser and returned a mock response; no email was sent. The
+final local production build has no placeholder provider settings. No environment
+files or dependency changes were introduced. Production has not been updated by
+this follow-up. The existing API and mail-delivery implementation are unchanged.
+
+## Previous company profile release
+
 
 Validated on 27 October 2026 against a local production server, built from the
 updated source. No production server or Nginx changes were performed.

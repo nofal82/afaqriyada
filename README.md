@@ -221,3 +221,22 @@ the router handles rewritten segment prefetches.
 The Arabic company name (آفاق ريادة) and the Arabic copy throughout are a written
 translation and should be reviewed by the company before launch, in particular
 the rendering of the company name itself.
+
+## Mobile navigation and product enquiries
+
+Logo links in the header, footer and mobile menu return to the current language's
+homepage. On the homepage they explicitly scroll to the top without reloading or
+clearing the enquiry draft. The menu closes before returning home. Header effects
+avoid creating a containing block that would clip the fixed mobile menu after scrolling.
+
+Standalone navigation, logo, language, profile, partner and contact controls have
+larger touch areas. The mobile menu includes a localized Call Sales telephone link.
+Manufacturer summaries are brief; detailed technology descriptions stay in product cards.
+
+Discuss This Solution carries a validated product slug in `?solution=<slug>#enquiry`
+and scrolls directly to the enquiry panel. The selection is shown with a clear action.
+Configured forms suggest the enquiry category and prepend the localized product title
+to the outgoing message without overwriting typed fields. Without a configured mailer,
+the sales email link includes the selected product in its subject and body. Language
+switching preserves the product selection and translates its display text. Selection
+is stored in the URL, not local storage; unknown slugs are ignored.

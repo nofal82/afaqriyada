@@ -4,6 +4,7 @@ import type { Dictionary } from "@/data/dictionaries";
 import { footerNavigation } from "@/data/navigation";
 import { localePath, type Locale } from "@/lib/i18n";
 import { Wordmark } from "@/components/ui/wordmark";
+import { HomeLink } from "@/components/ui/home-link";
 import { LanguageSwitcher } from "./language-switcher";
 
 interface FooterProps {
@@ -20,26 +21,28 @@ export function Footer({ locale, dict }: FooterProps) {
       <div className="mx-auto max-w-[88rem] px-5 py-16 sm:px-8 lg:px-12 lg:py-20">
         <div className="grid gap-12 lg:grid-cols-[1.6fr_1fr_1fr_1.2fr]">
           <div className="max-w-sm">
+            <HomeLink locale={locale} label={brand.homeAriaLabel}>
             <Wordmark
               name={brand.name}
               tagline={brand.tagline}
               tone="dark"
               uppercase={locale === "en"}
             />
+            </HomeLink>
             <p className="mt-6 text-sm leading-relaxed">{footer.description}</p>
-            <div className="mt-5 flex flex-col items-start gap-3 text-sm">
-              <a href="/company-profile/afaq-riyada-company-profile-a4.pdf" download className="underline underline-offset-4 hover:text-white">{dict.profile.download}</a>
-              <a href="/company-profile/index.html" target="_blank" rel="noopener noreferrer" className="underline underline-offset-4 hover:text-white">{dict.profile.online}<span className="sr-only"> ({common.opensInNewTab})</span></a>
+            <div className="mt-5 flex flex-col items-start gap-1 text-sm">
+              <a href="/company-profile/afaq-riyada-company-profile-a4.pdf" download className="inline-flex min-h-11 items-center underline underline-offset-4 hover:text-white">{dict.profile.download}</a>
+              <a href="/company-profile/index.html" target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center underline underline-offset-4 hover:text-white">{dict.profile.online}<span className="sr-only"> ({common.opensInNewTab})</span></a>
               <span className="text-xs">{dict.profile.language}</span>
             </div>
           </div>
 
           <nav aria-label={footer.companyHeading}>
             <h2 className="eyebrow text-white">{footer.companyHeading}</h2>
-            <ul className="mt-5 space-y-3 text-sm">
+            <ul className="mt-5 space-y-1 text-sm">
               {footerNavigation.company.map((item) => (
                 <li key={item.key}>
-                  <Link href={item.href} className="transition-colors hover:text-accent-300">
+                  <Link href={item.href} className="inline-flex min-h-11 items-center transition-colors hover:text-accent-300">
                     {nav.labels[item.key]}
                   </Link>
                 </li>
@@ -49,10 +52,10 @@ export function Footer({ locale, dict }: FooterProps) {
 
           <nav aria-label={footer.solutionsHeading}>
             <h2 className="eyebrow text-white">{footer.solutionsHeading}</h2>
-            <ul className="mt-5 space-y-3 text-sm">
+            <ul className="mt-5 space-y-1 text-sm">
               {footerNavigation.solutions.map((item) => (
                 <li key={item.key}>
-                  <Link href={item.href} className="transition-colors hover:text-accent-300">
+                  <Link href={item.href} className="inline-flex min-h-11 items-center transition-colors hover:text-accent-300">
                     {nav.labels[item.key]}
                   </Link>
                 </li>
@@ -71,7 +74,7 @@ export function Footer({ locale, dict }: FooterProps) {
                 <a
                   href={`mailto:${company.salesEmail}`}
                   dir="ltr"
-                  className="inline-block transition-colors hover:text-accent-300"
+                  className="inline-flex min-h-11 items-center transition-colors hover:text-accent-300"
                 >
                   {company.salesEmail}
                 </a>
@@ -83,7 +86,7 @@ export function Footer({ locale, dict }: FooterProps) {
                 <a
                   href={`mailto:${company.infoEmail}`}
                   dir="ltr"
-                  className="inline-block transition-colors hover:text-accent-300"
+                  className="inline-flex min-h-11 items-center transition-colors hover:text-accent-300"
                 >
                   {company.infoEmail}
                 </a>
@@ -117,7 +120,7 @@ export function Footer({ locale, dict }: FooterProps) {
                     segment prefetches.
                   */
                   prefetch={false}
-                  className="transition-colors hover:text-accent-300"
+                  className="inline-flex min-h-11 items-center transition-colors hover:text-accent-300"
                 >
                   {nav.labels[item.key]}
                 </Link>

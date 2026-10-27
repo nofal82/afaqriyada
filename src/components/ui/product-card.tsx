@@ -1,10 +1,9 @@
-import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { getManufacturer } from "@/data/partners";
 import type { ProductSolution } from "@/data/types";
 import type { Dictionary } from "@/data/dictionaries";
 import { format } from "@/data/dictionaries";
-import { primaryCtaHref } from "@/data/navigation";
+import { SolutionLink } from "./solution-link";
 import { TechnicalIllustration } from "./technical-illustration";
 
 interface ProductCardProps {
@@ -71,9 +70,9 @@ export function ProductCard({ product, dict }: ProductCardProps) {
         </ul>
 
         <div className="mt-auto pt-7">
-          <Link
-            href={primaryCtaHref}
-            className="inline-flex items-center gap-2 border-b border-transparent pb-0.5 text-sm font-medium text-ink-900 transition-colors hover:border-accent-600 hover:text-accent-700"
+          <SolutionLink
+            slug={product.slug}
+            className="inline-flex min-h-11 items-center gap-2 border-b border-transparent pb-0.5 text-sm font-medium text-ink-900 transition-colors hover:border-accent-600 hover:text-accent-700"
           >
             {dict.cardCta}
             <ArrowRight
@@ -81,7 +80,7 @@ export function ProductCard({ product, dict }: ProductCardProps) {
               aria-hidden="true"
             />
             <span className="sr-only">— {copy.title}</span>
-          </Link>
+          </SolutionLink>
         </div>
       </div>
     </article>

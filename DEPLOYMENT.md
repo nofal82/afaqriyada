@@ -11,7 +11,7 @@ The user prefers a folder swap, keeping both systemd and Nginx unchanged. Use th
 procedure for subsequent releases; the earlier generic release-directory notes
 below are historical guidance, not instructions to change the service definition.
 
-1. Clone `codex/company-profile-update` into `/opt/afaqriyada.new`. Stop if that
+1. Clone `main` into `/opt/afaqriyada.new`. Stop if that
    directory already exists. Compare its commit with the latest reviewed commit.
 2. Copy the current `.env.local` and modified `package-lock.json` into the new
    folder. Give the environment file mode 600, owned by `www-data`, and make the

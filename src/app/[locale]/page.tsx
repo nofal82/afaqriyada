@@ -11,6 +11,7 @@ import { WhyAfaqRiyada } from "@/components/sections/why-afaq-riyada";
 import { EngineeringProcess } from "@/components/sections/engineering-process";
 import { CallToAction } from "@/components/sections/call-to-action";
 import { Contact } from "@/components/sections/contact";
+import { CompanyProfile } from "@/components/sections/company-profile";
 
 /**
  * Landing page, rendered once per locale.
@@ -31,6 +32,7 @@ export default async function HomePage({ params }: PageProps<"/[locale]">) {
       <Hero dict={dict.hero} />
       <CapabilityStrip dict={dict.capabilityStrip} />
       <CompanyOverview dict={dict.about} />
+      <CompanyProfile dict={dict.profile} opensInNewTab={dict.common.opensInNewTab} />
       <Industries dict={dict.industries} />
       <Products dict={dict.solutions} />
       <Partners dict={dict.partners} opensInNewTab={dict.common.opensInNewTab} />

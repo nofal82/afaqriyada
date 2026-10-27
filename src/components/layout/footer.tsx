@@ -27,6 +27,11 @@ export function Footer({ locale, dict }: FooterProps) {
               uppercase={locale === "en"}
             />
             <p className="mt-6 text-sm leading-relaxed">{footer.description}</p>
+            <div className="mt-5 flex flex-col items-start gap-3 text-sm">
+              <a href="/company-profile/afaq-riyada-company-profile-a4.pdf" download className="underline underline-offset-4 hover:text-white">{dict.profile.download}</a>
+              <a href="/company-profile/index.html" target="_blank" rel="noopener noreferrer" className="underline underline-offset-4 hover:text-white">{dict.profile.online}<span className="sr-only"> ({common.opensInNewTab})</span></a>
+              <span className="text-xs">{dict.profile.language}</span>
+            </div>
           </div>
 
           <nav aria-label={footer.companyHeading}>

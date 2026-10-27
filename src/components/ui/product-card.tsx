@@ -54,7 +54,7 @@ export function ProductCard({ product, dict }: ProductCardProps) {
           {copy.description}
         </p>
 
-        {note ? (
+        {typeof note === "string" ? (
           <p className="mt-3 text-sm leading-relaxed text-steel-500 italic">{note}</p>
         ) : null}
 

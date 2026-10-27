@@ -1,5 +1,5 @@
-import { Mail, MapPin } from "lucide-react";
-import { company } from "@/data/company";
+import { Mail, MapPin, Phone, UserRound } from "lucide-react";
+import { company, generalManager } from "@/data/company";
 import type { Dictionary } from "@/data/dictionaries";
 import { isMailerConfigured } from "@/lib/mailer";
 import { Section } from "@/components/ui/section";
@@ -73,6 +73,21 @@ export function Contact({ dict, location }: ContactProps) {
 
           <Reveal delay={80}>
             <dl className="mt-10 space-y-8 border-t border-line pt-10">
+              <div className="flex gap-4">
+                <UserRound className="mt-0.5 size-5 shrink-0 text-accent-600" strokeWidth={1.5} aria-hidden="true" />
+                <div className="min-w-0">
+                  <dt className="eyebrow text-steel-500">{dict.managerLabel}</dt>
+                  <dd className="mt-2 text-base"><a href={`tel:${generalManager.phone}`} dir="ltr" className="inline-block text-ink-900 hover:text-accent-700">+962 7 7950 5703</a></dd>
+                  <dd className="mt-1 text-sm"><a href={`mailto:${generalManager.email}`} dir="ltr" className="inline-block break-all text-ink-900 hover:text-accent-700">{generalManager.email}</a></dd>
+                </div>
+              </div>
+              <div className="flex gap-4">
+                <Phone className="mt-0.5 size-5 shrink-0 text-accent-600" strokeWidth={1.5} aria-hidden="true" />
+                <div>
+                  <dt className="eyebrow text-steel-500">{dict.phoneLabel}</dt>
+                  <dd className="mt-2 text-base"><a href={`tel:${company.phone}`} dir="ltr" className="inline-block text-ink-900 hover:text-accent-700">+962 7 9044 0487</a></dd>
+                </div>
+              </div>
               <div className="flex gap-4">
                 <MapPin
                   className="mt-0.5 size-5 shrink-0 text-accent-600"

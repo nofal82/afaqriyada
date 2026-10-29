@@ -44,29 +44,15 @@ export interface ProductSolution {
   category: SolutionCategorySlug;
   /** Manufacturer slugs; empty where the manufacturer is not yet confirmed. */
   manufacturers?: string[];
-  /** Schematic illustration variant rendered on the product card. */
-  illustration: IllustrationVariant;
+  /** Locally hosted manufacturer product image. */
+  image: ProductImage;
 }
 
-export type IllustrationVariant =
-  | "surge-vessel"
-  | "pump"
-  | "valve"
-  | "gasket"
-  | "diaphragm-valve"
-  | "glass-lined-reactor"
-  | "mechanical-seal"
-  | "thermoplastic-piping"
-  | "graphite-heat-exchanger"
-  | "instrument"
-  | "hose"
-  | "steam"
-  | "corrosion"
-  | "filter"
-  | "drive"
-  | "gear"
-  | "belt"
-  | "chain";
+export interface ProductImage {
+  src: string;
+  width: number;
+  height: number;
+}
 
 export interface Industry {
   slug: string;

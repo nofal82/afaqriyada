@@ -1,52 +1,28 @@
+import Image from "next/image";
+import { heroPhoto } from "@/data/product-photos";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import type { Dictionary } from "@/data/dictionaries";
 import { Reveal } from "@/components/ui/reveal";
 
-/**
- * Hero.
- *
- * The background is an engineered treatment rather than stock photography: a
- * measured grid with a schematic of a pumping/surge arrangement, drawn in a
- * single accent tone. It reads as technical without claiming to depict a real
- * Afaq Riyada installation. Project photography can replace it later by
- * swapping the backdrop layer.
- */
+/** Manufacturer equipment photograph used as a decorative background, not a project claim. */
 export function Hero({ dict }: { dict: Dictionary["hero"] }) {
   return (
     <section id="top" className="relative isolate overflow-hidden bg-ink-950 pt-32 pb-20 sm:pt-40 sm:pb-24 lg:pt-48 lg:pb-32">
       <div aria-hidden="true" className="absolute inset-0 -z-10">
         <div className="grid-texture absolute inset-0 text-steel-300 opacity-[0.18]" />
         <div className="absolute inset-0 bg-[radial-gradient(120%_90%_at_78%_10%,rgba(18,136,156,0.22),transparent_60%)]" />
-        <svg
-          viewBox="0 0 800 600"
-          className="absolute end-0 bottom-0 hidden h-full w-auto text-accent-400/25 lg:block"
-          fill="none"
-          preserveAspectRatio="xMaxYMax slice"
-        >
-          <g stroke="currentColor" strokeWidth="1.25" strokeLinecap="round" strokeLinejoin="round">
-            {/* Surge vessel */}
-            <path d="M470 190c0-22 18-34 62-34s62 12 62 34v170c0 22-18 34-62 34s-62-12-62-34z" />
-            <path d="M496 204c0-14 14-22 36-22s36 8 36 22v128c0 16-16 26-36 26s-36-10-36-26z" strokeDasharray="6 6" opacity="0.7" />
-            <path d="M532 156v-34m-16 0h32" />
-            <path d="M532 394v40" />
-            {/* Header main */}
-            <path d="M180 434h560" strokeWidth="2" />
-            <path d="M180 460h560" opacity="0.35" />
-            {/* Pump set */}
-            <circle cx="290" cy="360" r="46" />
-            <circle cx="290" cy="360" r="24" opacity="0.6" />
-            <path d="M290 314v-52m-16 0h32" />
-            <path d="M244 360h-58" />
-            <path d="M336 360h34" />
-            <rect x="370" y="330" width="72" height="60" />
-            <path d="M290 406v28" />
-            {/* Dimension lines */}
-            <path d="M640 156v278m-10-278h20m-20 278h20" opacity="0.5" />
-            <path d="M186 262h74m-74-8v16m74-16v16" opacity="0.5" />
-          </g>
-        </svg>
-        {/* Keeps the schematic clear of the headline and body copy. */}
+        <div className="absolute inset-y-0 end-0 w-full [mask-image:linear-gradient(to_right,transparent,black_25%)] lg:w-[65%] rtl:[mask-image:linear-gradient(to_left,transparent,black_25%)]">
+          <Image
+            src={heroPhoto.src}
+            alt=""
+            fill
+            priority
+            unoptimized
+            className="object-cover opacity-20 lg:opacity-55"
+          />
+        </div>
+        {/* Keeps the photograph behind the text sufficiently dark for readability. */}
         <div className="absolute inset-0 bg-linear-to-r from-ink-950 via-ink-950/85 to-transparent rtl:bg-linear-to-l" />
       </div>
 

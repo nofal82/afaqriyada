@@ -162,7 +162,7 @@ export const en = {
     // /products/[slug] pages exist. The label stays truthful about where it goes.
     cardCta: "Discuss This Solution",
     manufacturerToBeConfirmed: "Manufacturer to be confirmed",
-    illustrationLabel: "Schematic drawing: {title}",
+    imageAlt: "Product image: {title} — {manufacturer}",
     categories: {
       "water-wastewater": {
         title: "Water & Wastewater Solutions",

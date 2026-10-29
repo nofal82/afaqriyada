@@ -2,6 +2,7 @@ import { ImageResponse } from "next/og";
 import { readFile } from "node:fs/promises";
 import { join } from "node:path";
 import { company } from "@/data/company";
+import { brandLogos } from "@/data/brand";
 import { getDictionary } from "@/data/dictionaries";
 import { defaultLocale, direction, isLocale, locales } from "@/lib/i18n";
 
@@ -85,7 +86,8 @@ export async function GET(
   const dict = getDictionary(locale);
   const rtl = direction(locale) === "rtl";
   const fontData = await loadFont(locale);
-  const wordmark = await readFile(join(process.cwd(), "public/brand/wordmark.svg"));
+  const logo = brandLogos[locale];
+  const wordmark = await readFile(join(process.cwd(), "public", logo.src.slice(1)));
 
   return new ImageResponse(
     (
@@ -118,7 +120,7 @@ export async function GET(
             src={`data:image/svg+xml;base64,${wordmark.toString("base64")}`}
             alt={dict.brand.name}
             width={420}
-            height={43}
+            height={Math.round(420 * logo.height / logo.width)}
           />
         </div>
 

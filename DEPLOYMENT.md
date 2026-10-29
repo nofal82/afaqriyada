@@ -2,6 +2,12 @@
 
 ## Current production and the usability follow-up
 
+The latest approved follow-up replaces incomplete wordmarks with full localized
+English and Arabic logos, and replaces all 16 product schematics plus the hero
+drawing with locally hosted manufacturer imagery. Use the same folder-swap
+procedure below. Check both language logos and product images after deployment.
+The proposed employee quotation portal is deferred; no portal link is included.
+
 The company-profile release has been deployed successfully. Production runs as
 `www-data` under `afaqriyada.service`, with `WorkingDirectory=/opt/afaqriyada`
 and `/usr/bin/node node_modules/next/dist/bin/next start` on port 3121. The reported

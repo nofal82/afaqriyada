@@ -1,10 +1,10 @@
+import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import { getManufacturer } from "@/data/partners";
 import type { ProductSolution } from "@/data/types";
 import type { Dictionary } from "@/data/dictionaries";
 import { format } from "@/data/dictionaries";
 import { SolutionLink } from "./solution-link";
-import { TechnicalIllustration } from "./technical-illustration";
 
 interface ProductCardProps {
   product: ProductSolution;
@@ -21,15 +21,15 @@ export function ProductCard({ product, dict }: ProductCardProps) {
 
   return (
     <article className="group flex h-full flex-col border border-line bg-white transition-colors duration-300 hover:border-ink-900/25">
-      <div className="relative overflow-hidden border-b border-line bg-mist-100">
-        <div className="grid-texture absolute inset-0 text-ink-900" aria-hidden="true" />
-        <div className="relative px-6 py-7">
-          <TechnicalIllustration
-            variant={product.illustration}
-            label={format(dict.illustrationLabel, { title: copy.title })}
-            className="mx-auto h-40 w-full max-w-[22rem] text-ink-700/80 transition-transform duration-500 group-hover:scale-[1.02]"
-          />
-        </div>
+      <div className="overflow-hidden border-b border-line bg-white">
+        <Image
+          src={product.image.src}
+          width={product.image.width}
+          height={product.image.height}
+          unoptimized
+          alt={format(dict.imageAlt, { title: copy.title, manufacturer: makers.map((maker) => maker.name).join(" · ") })}
+          className="h-60 w-full object-contain p-5 transition-transform duration-500 group-hover:scale-[1.02]"
+        />
       </div>
 
       <div className="flex flex-1 flex-col p-6 sm:p-7">

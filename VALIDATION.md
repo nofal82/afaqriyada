@@ -1,4 +1,44 @@
-# Local validation: mobile usability update
+# Local validation: manufacturer product imagery
+
+Prepared locally on 28 October 2026 and approved by the user for publication on
+29 October 2026. Server deployment remains a separate step. Replaced all 16 product-card line schematics with locally hosted
+manufacturer product imagery and the hero equipment drawing with a manufacturer
+installation photograph. The corrected localized complete logos remain in place.
+
+Production build, TypeScript, lint and whitespace checks passed. Headless Chrome
+passed 111 product-image checks in English and Arabic at 320, 375, 768, 1024, 1280
+and 1440 CSS pixels: all 16 images load, each group uses a distinct local asset,
+image descriptions are localized, cards contain complete images without cropping,
+no page overflow occurs, the hero drawing is removed, localized logos remain,
+product enquiry selection still works, and there are no browser JavaScript errors.
+All 16 card images, desktop product grid, Arabic mobile cards and hero were reviewed.
+
+Images are pre-compressed WebP assets served directly rather than processed again
+by the server image optimizer. All 17 files together total 829,702 bytes. Card
+images load lazily. No dependency or deployment configuration changes are needed.
+Sources, brochure extraction notes and publication-rights status are recorded in
+PRODUCT-IMAGE-SOURCES.md. Manufacturer catalogue imagery may include renders;
+these are actual manufacturer product images, not AI-generated illustrations.
+
+## Previous localized complete logo correction
+
+
+Prepared locally on 28 October 2026 and approved by the user for publication.
+The artwork uses original vector paths from the complete
+logo in the supplied portrait A4 profile. English includes its lettering and
+Solutions line plus the six-line symbol; Arabic includes its lettering and
+للحلول plus the same symbol. No letters were retyped and the symbol was not mirrored.
+
+Production build (including TypeScript), lint and whitespace checks passed.
+Headless Chrome passed 79 logo/layout checks across English and Arabic at 320,
+375, 768, 1024, 1280 and 1440 CSS pixels. Verified correct language-specific
+assets in header, footer and mobile menu; no page overflow or overlapping header
+controls; loaded logos fit the header; menu logo closes the menu and returns to
+the top; both social images render; no browser JavaScript errors. Visually reviewed
+the complete source artwork, both derived logos, desktop and phone headers,
+mobile menu and Arabic social image. Existing favicon artwork remains unchanged.
+
+## Previous mobile usability release
 
 Production build, TypeScript, lint and whitespace checks passed for the usability
 follow-up. Headless Chrome passed **180 interaction checks**: 93 with the configured

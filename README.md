@@ -33,7 +33,7 @@ src/
   components/
     layout/                 # header, mobile nav, language switcher, footer
     sections/               # one component per landing-page section
-    ui/                     # section shell, headings, cards, illustrations
+    ui/                     # section shell, headings, cards and navigation links
     forms/                  # contact form (client)
     seo/                    # structured data
   data/
@@ -169,10 +169,19 @@ logo is ever removed — it never redraws or imitates a logo.
 
 ### Afaq Riyada branding — `public/brand/`
 
-The header, footer, mobile navigation and social previews use the supplied official
-wordmark, exported directly from its Illustrator vector paths to `public/brand/wordmark.svg`.
-The official icon supplies the SVG favicon, ICO, Apple icon and organization logo.
-The artwork colours are preserved. The wordmark background is transparent for dark placements.
+The header, footer, mobile navigation and social previews use language-specific
+complete logos: `public/brand/logo-en.svg` and `public/brand/logo-ar.svg`. Both include
+the original six-line symbol and the relevant Solutions text. Their vector paths
+come directly from the complete logo on the supplied portrait A4 profile cover;
+the original lettering, colours, proportions and spacing are preserved. English
+uses the English lettering with the symbol on its right; Arabic uses the Arabic
+lettering with the same symbol on its left. The artwork is transparent for dark
+placements. `src/data/brand.ts` holds the intrinsic dimensions for both versions.
+`public/brand/wordmark.svg` is a compatibility copy of the complete English logo.
+
+The separate Illustrator wordmark contains English AFAQ RIYADA lettering alone,
+so it is no longer used as the website's main logo. The official Illustrator icon
+continues to supply the SVG favicon, ICO, Apple icon and organization logo.
 
 ### Company profile
 
@@ -192,14 +201,20 @@ download the Arabic face. See the comment in `src/lib/fonts.ts`.
 `src/assets/fonts` holds two IBM Plex TTFs used only to draw the OpenGraph
 images, which need real font bytes at render time.
 
-### Imagery — `public/images/`
+### Product imagery — `public/products/`
 
-Product cards and the hero use original engineering line schematics rather than
-stock photography: they describe the equipment type honestly, imply no specific
-manufacturer's product, and carry no licensing ambiguity. When licensed project
-or equipment photography is available, drop the files into `public/images/` and
-render them through `next/image` in `ProductCard` in place of
-`TechnicalIllustration`.
+All 16 product groups use locally hosted manufacturer product images in place of
+the previous line schematics. The hero also uses a manufacturer equipment photograph.
+`src/data/product-photos.ts` records intrinsic dimensions; `next/image` supplies
+layout sizing and lazy loading for product cards. The locally compressed WebP files
+are served directly, without a second server-side optimization pass. Cards contain the complete
+image without cropping. The hero photograph is a decorative manufacturer reference,
+not an Afaq project claim. No AI-generated product images are used.
+
+`PRODUCT-IMAGE-SOURCES.md` records source pages, original assets or brochures,
+extraction notes and hashes. Baumer's image comes from its DirectIndustry product
+listing. Publication rights should be confirmed with the rights holders during
+client review; a separate reuse licence was not supplied.
 
 ## Content accuracy
 

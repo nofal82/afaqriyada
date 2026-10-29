@@ -24,9 +24,8 @@ export function Footer({ locale, dict }: FooterProps) {
             <HomeLink locale={locale} label={brand.homeAriaLabel}>
             <Wordmark
               name={brand.name}
-              tagline={brand.tagline}
+              locale={locale}
               tone="dark"
-              uppercase={locale === "en"}
             />
             </HomeLink>
             <p className="mt-6 text-sm leading-relaxed">{footer.description}</p>

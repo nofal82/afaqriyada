@@ -96,9 +96,8 @@ export function MobileNavigation({
           <HomeLink locale={locale} label={copy.brand.homeAriaLabel} onNavigate={onClose}>
           <Wordmark
             name={copy.brand.name}
-            tagline={copy.brand.tagline}
+            locale={locale}
             tone="dark"
-            uppercase={locale === "en"}
           />
           </HomeLink>
           <button

@@ -52,13 +52,12 @@ export function Header({ locale, copy }: HeaderProps) {
           : "border-b border-white/10 bg-transparent",
       )}
     >
-      <div className="mx-auto flex h-20 max-w-[88rem] items-center justify-between gap-6 px-5 sm:px-8 lg:px-12">
+      <div className="mx-auto flex h-20 max-w-[88rem] items-center justify-between gap-3 px-5 sm:gap-6 sm:px-8 lg:px-12">
         <HomeLink locale={locale} label={copy.brand.homeAriaLabel}>
           <Wordmark
             name={copy.brand.name}
-            tagline={copy.brand.tagline}
+            locale={locale}
             tone="dark"
-            uppercase={locale === "en"}
           />
         </HomeLink>
 

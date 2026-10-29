@@ -1,3 +1,4 @@
+import { productPhotos } from "./product-photos";
 import type { ProductSolution, SolutionCategory, SolutionCategorySlug } from "./types";
 
 export const solutionCategories: SolutionCategory[] = [{ slug: "water-wastewater" }, { slug: "industrial-process" }];
@@ -9,7 +10,7 @@ export const products: ProductSolution[] = [
     "manufacturers": [
       "henriques-henriques"
     ],
-    "illustration": "surge-vessel"
+    "image": productPhotos["surge-vessels"]
   },
   {
     "slug": "instrumentation",
@@ -17,7 +18,7 @@ export const products: ProductSolution[] = [
     "manufacturers": [
       "kobold"
     ],
-    "illustration": "instrument"
+    "image": productPhotos["instrumentation"]
   },
   {
     "slug": "process-valves",
@@ -25,7 +26,7 @@ export const products: ProductSolution[] = [
     "manufacturers": [
       "gemu"
     ],
-    "illustration": "diaphragm-valve"
+    "image": productPhotos["process-valves"]
   },
   {
     "slug": "pumps",
@@ -33,7 +34,7 @@ export const products: ProductSolution[] = [
     "manufacturers": [
       "lutz"
     ],
-    "illustration": "pump"
+    "image": productPhotos["pumps"]
   },
   {
     "slug": "gaskets-sealing",
@@ -41,7 +42,7 @@ export const products: ProductSolution[] = [
     "manufacturers": [
       "kwo"
     ],
-    "illustration": "gasket"
+    "image": productPhotos["gaskets-sealing"]
   },
   {
     "slug": "mechanical-seals",
@@ -49,7 +50,7 @@ export const products: ProductSolution[] = [
     "manufacturers": [
       "depac"
     ],
-    "illustration": "mechanical-seal"
+    "image": productPhotos["mechanical-seals"]
   },
   {
     "slug": "special-gaskets",
@@ -57,7 +58,7 @@ export const products: ProductSolution[] = [
     "manufacturers": [
       "spetech"
     ],
-    "illustration": "gasket"
+    "image": productPhotos["special-gaskets"]
   },
   {
     "slug": "hose-assemblies",
@@ -65,7 +66,7 @@ export const products: ProductSolution[] = [
     "manufacturers": [
       "flextech"
     ],
-    "illustration": "hose"
+    "image": productPhotos["hose-assemblies"]
   },
   {
     "slug": "steam-systems",
@@ -73,7 +74,7 @@ export const products: ProductSolution[] = [
     "manufacturers": [
       "valsteam-adca"
     ],
-    "illustration": "steam"
+    "image": productPhotos["steam-systems"]
   },
   {
     "slug": "corrosion-resistant-handling",
@@ -81,7 +82,7 @@ export const products: ProductSolution[] = [
     "manufacturers": [
       "andronaco"
     ],
-    "illustration": "corrosion"
+    "image": productPhotos["corrosion-resistant-handling"]
   },
   {
     "slug": "sensors-measurement",
@@ -89,7 +90,7 @@ export const products: ProductSolution[] = [
     "manufacturers": [
       "baumer"
     ],
-    "illustration": "instrument"
+    "image": productPhotos["sensors-measurement"]
   },
   {
     "slug": "industrial-filtration",
@@ -97,7 +98,7 @@ export const products: ProductSolution[] = [
     "manufacturers": [
       "junker-filter"
     ],
-    "illustration": "filter"
+    "image": productPhotos["industrial-filtration"]
   },
   {
     "slug": "drives-automation",
@@ -105,7 +106,7 @@ export const products: ProductSolution[] = [
     "manufacturers": [
       "sew-eurodrive"
     ],
-    "illustration": "drive"
+    "image": productPhotos["drives-automation"]
   },
   {
     "slug": "gears-engineering",
@@ -113,7 +114,7 @@ export const products: ProductSolution[] = [
     "manufacturers": [
       "hofmann-engineering"
     ],
-    "illustration": "gear"
+    "image": productPhotos["gears-engineering"]
   },
   {
     "slug": "conveyor-belts",
@@ -121,7 +122,7 @@ export const products: ProductSolution[] = [
     "manufacturers": [
       "sig"
     ],
-    "illustration": "belt"
+    "image": productPhotos["conveyor-belts"]
   },
   {
     "slug": "industrial-chains",
@@ -129,7 +130,7 @@ export const products: ProductSolution[] = [
     "manufacturers": [
       "zmc"
     ],
-    "illustration": "chain"
+    "image": productPhotos["industrial-chains"]
   }
 ];
 

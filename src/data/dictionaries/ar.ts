@@ -163,7 +163,7 @@ export const ar: Dictionary = {
       "مجالان للحلول، يقوم كل منهما على تقنيات تصنيع محددة. وتُقدَّم المواصفات التفصيلية والرسومات والوثائق عند الطلب استناداً إلى مصادر الجهات المصنّعة.",
     cardCta: "ناقش هذا الحل",
     manufacturerToBeConfirmed: "الجهة المصنّعة قيد التأكيد",
-    illustrationLabel: "رسم تخطيطي: {title}",
+    imageAlt: "صورة منتج: {title} — {manufacturer}",
     categories: {
       "water-wastewater": {
         title: "حلول المياه والصرف الصحي",

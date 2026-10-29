@@ -1,25 +1,27 @@
 import Image from "next/image";
 import { cn } from "@/lib/utils";
+import { brandLogos } from "@/data/brand";
+import type { Locale } from "@/lib/i18n";
 
 interface WordmarkProps {
   name: string;
-  tagline: string;
+  locale: Locale;
   tone?: "light" | "dark";
-  uppercase?: boolean;
   className?: string;
 }
 
-/** Official vector paths exported from the supplied Illustrator wordmark. */
-export function Wordmark({ name, tone = "light", className }: WordmarkProps) {
+/** Language-specific complete logo, including the original diagonal line symbol. */
+export function Wordmark({ name, locale, tone = "light", className }: WordmarkProps) {
+  const logo = brandLogos[locale];
   return (
     <span className={cn("inline-flex items-center", tone === "light" && "bg-[#0a5684] px-3 py-2", className)}>
       <Image
-        src="/brand/wordmark.svg"
+        src={logo.src}
         alt={name}
-        width={734}
-        height={75}
+        width={logo.width}
+        height={logo.height}
         priority
-        className="h-auto w-32 min-[380px]:w-40 sm:w-52"
+        className="h-auto w-36 min-[360px]:w-44 sm:w-52"
       />
     </span>
   );
